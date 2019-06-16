@@ -75,7 +75,7 @@ componentDidMount() {
                    
                     <h5 className="card-header">{this.state.pokemonIndex} </h5>
                     {this.state.imageLoading ? (
-                        <img src={spinner} style={{width:'5em',  height: '5em'}} className="card-img-top rounded mx-auto d-block mt-2"></img>
+                        <img src={spinner} style={{width:'5em',  height: '5em'}} className="card-img-top rounded mx-auto d-block mt-2" alt=""></img>
                     ) : null}
                     <Sprite 
                     className="card-img-top-rounded mx-auto mt-2" 

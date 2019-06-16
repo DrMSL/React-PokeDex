@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 
+
 const TYPE_COLORS = {
     bug: 'B1C12E',
     dark: '4F3A2D',
@@ -45,7 +46,14 @@ export default class Pokemon extends Component {
         genderRatioMale:'',
         genderRatioFemale:'',
         evs: '',
-        hatchSteps:''
+        hatchSteps:'',
+        evolutionChain: '',
+        evolresp: {},
+        species: '',
+        unEvolved: '',
+        evols: []
+        
+       
     }
 
 async componentDidMount() {
@@ -55,7 +63,9 @@ async componentDidMount() {
 
     const pokemonUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonIndex}/`;
     const pokemonSpeciesUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonIndex}/`;
+  
 
+    
     //Get Pokemon info
     const pokemonRes = await axios.get(pokemonUrl);
 
@@ -83,8 +93,9 @@ async componentDidMount() {
             break;
             case 'special-defense':
                     specialDefense = stat['base_stat'];
-               break;
+            break;
         }
+        return true;
     })
 
     // height is given in decimeters so convert to feet The + 0.0001 * 100 / 100 is for rounding to 2 decimal places
@@ -128,13 +139,17 @@ async componentDidMount() {
         res.data.flavor_text_entries.some(flavor => {
             if (flavor.language.name === 'en') {
                 description = flavor.flavor_text;
-                return;
-            }
+                return true;
+            };
         });
-// gender is expressed in eight 
+
+        console.log("descript:", description);
+    // gender is expressed in eight 
         const femaleRate = res.data['gender_rate'] ;
         const genderRatioFemale = 12.5 * femaleRate;
         const genderRatioMale = 12.5 * (8 - femaleRate);
+
+        console.log("gender males:", genderRatioMale);
        
         const catchRate = Math.round((100/255) * res.data['capture_rate']);
 
@@ -151,13 +166,37 @@ async componentDidMount() {
 //one must walk 255 times before this pokemon egg hatches
        const hatchSteps = 255 * (res.data['hatch_counter'] + 1); 
 
+       // this is where I get my link to the evolution chain
+       const evolutionChain = res.data['evolution_chain'].url
+       console.log(evolutionChain);
+
+   
+//Get Pokemon ev chain
+ axios.get(evolutionChain)
+.then(eres => 
+    console.log(eres.data.chain.evolves_to[0].species.name)
+    )
+// .then(eres => this.setState({unEvolved: eres.data.chain.evolves_to[0].species.name}))
+
+// console.log(this.state.unEvolved);
+
+
+
+const unEvolved =  axios.get(evolutionChain)
+.then(eres => this.setState({unEvolved: eres.data.chain.evolves_to[0].species.name}))
+
+console.log(this.state.unEvolved);
+
        this.setState({
            description,
            genderRatioFemale,
            genderRatioMale,
            catchRate,
            eggGroups,
-           hatchSteps
+           hatchSteps,
+           evolutionChain,
+          
+          
        })
 
     });
@@ -181,9 +220,17 @@ async componentDidMount() {
         evs
     })
 
-}
+
+
+} // fin componentDidMount
+
+
 
     render() {
+
+
+   
+
         return (
             <div className="col">
                 <div className="card">
@@ -218,6 +265,7 @@ async componentDidMount() {
                                 <img
                                 src={this.state.imageUrl}
                                 className="card-img-top rounded mx-auto mt-2"
+                                alt=""
                                 />
                             </div>
                             <div className="col-md-9">
@@ -371,7 +419,7 @@ async componentDidMount() {
                     </div>
                    
                     <div className="card-body">
-            <h5 class="card-title text-center">Profile</h5>
+            <h5 className="card-title text-center">Profile</h5>
             <div className="row">
               <div className="col-md-6">
                 <div className="row">
@@ -397,9 +445,9 @@ async componentDidMount() {
                     <h6 className="float-right">Gender Ratio:</h6>
                   </div>
                   <div className="col-6">
-                    <div class="progress">
+                    <div className="progress">
                       <div
-                        class="progress-bar"
+                        className="progress-bar"
                         role="progressbar"
                         style={{
                           width: `${this.state.genderRatioFemale}%`,
@@ -412,7 +460,7 @@ async componentDidMount() {
                         <small>{this.state.genderRatioFemale}</small>
                       </div>
                       <div
-                        class="progress-bar"
+                        className="progress-bar"
                         role="progressbar"
                         style={{
                           width: `${this.state.genderRatioMale}%`,
@@ -458,9 +506,9 @@ async componentDidMount() {
               </div>
             </div>
           </div>
-          <div class="card-footer text-muted">
+          <div className="card-footer text-muted">
             Data From{' '}
-            <a href="https://pokeapi.co/" target="_blank" className="card-link">
+            <a href="https://pokeapi.co/" target="_blank" className="card-link" rel="noopener noreferrer">
               PokeAPI.co
             </a>
           </div>

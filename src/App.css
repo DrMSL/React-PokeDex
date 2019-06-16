@@ -12,3 +12,23 @@
   
 }
 
+.btn {
+    display: inline-block;
+    border: none;
+    background: #55a0d6;
+    color: #fff;
+    padding: 7px 20px;
+    cursor: pointer;
+  }
+  
+  .btn:hover {
+    background: #666;
+  }
+  
+  input {
+    outline: none;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }

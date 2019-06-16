@@ -1,0 +1,32 @@
+.heading {
+    font-size: 3rem;
+    padding: 16px 0;
+    text-align: center;
+}
+
+.search-label{
+    position: relative;
+}
+
+.mslcontainer {
+    width: 100%;
+    max-width: 800px;
+    margin: 36px;
+}
+.mslcontainer input {
+    width: 800px;
+    padding: 16px;
+    font-size: 16px;
+    font-style: italic;
+    color: #444;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.searchicon{
+position: absolute;
+top: 15px;
+font-size: 30px;
+color: #555;
+right: 22px;
+}

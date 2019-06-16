@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
-import PokemonCard from './PokemonCard'
+import PokemonCard from './PokemonCard';
 import axios from 'axios';
+
 
 export default class PokemonList extends Component {
 
     state= {
         // the first link is the good one - but for dev is too many requests
         // url: "https://pokeapi.co/api/v2/pokemon/?limit=151",
-        url: "https://pokeapi.co/api/v2/pokemon/?limit=351",
+        url: "https://pokeapi.co/api/v2/pokemon/?limit=51",
         pokemon: null
     };
 
  async componentDidMount(){
     const res = await axios.get(this.state.url)
+  
     this.setState({pokemon: res.data['results']});
  }   
 
@@ -20,6 +22,7 @@ export default class PokemonList extends Component {
         return (
 
             <React.Fragment>
+                
             {this.state.pokemon ? ( <div className="row">
               
             {this.state.pokemon.map(pokemon => (
