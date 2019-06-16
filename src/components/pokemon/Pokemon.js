@@ -1,5 +1,9 @@
 import React, { Component } from 'react'
 import axios from 'axios';
+import {Link} from 'react-router-dom';
+
+
+
 
 
 const TYPE_COLORS = {
@@ -236,10 +240,13 @@ console.log(this.state.unEvolved);
                 <div className="card">
                     <div className="card-header">
                         <div className="row">
-                            <div className="col-5">
+                            <div className="col-3">
                                 <h5>{this.state.pokemonIndex}</h5>
                             </div>
-                            <div className="col-7">
+                            <div className="col-3">
+                               <Link to='/' className='back'><i class="fas fa-arrow-left"></i> Back</Link>
+                            </div>
+                            <div className="col-6">
                                 <div className="float-right">
                                 {this.state.types.map(type => (
                                     <span

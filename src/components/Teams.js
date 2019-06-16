@@ -3,6 +3,7 @@ import Todos from './Todos';
 import AddTodo from './AddTodo';
 import uuid from 'uuid';
 
+
 export class Teams extends Component {
     state = {
         todos: [
@@ -13,7 +14,7 @@ export class Teams extends Component {
           },
           {
             id: uuid.v4(),
-            title: 'Warriors',
+            title: 'Segamorf 4',
             completed: false
           },
         ]
@@ -58,7 +59,12 @@ export class Teams extends Component {
               <h1
               style={{ width: '100%', padding: '10px 5px', backgroundColor: '#55a0d6', color: '#fff', marginBottom: '0' }}
               >Poké Teams</h1>
-               <Todos todos={this.state.todos} delTodo={this.delTodo}/>
+               
+               <Todos 
+               todos={this.state.todos} 
+               delTodo={this.delTodo}
+               />
+             
                 <AddTodo addTodo= {this.addTodo}/>
            </div>
         )

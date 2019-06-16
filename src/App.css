@@ -32,3 +32,19 @@
   h1 {
     font-size: 2rem;
   }
+
+  .back {
+    background-color: #ef5350;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 10rem;
+    text-decoration: none;
+    margin-top: 5px;
+  }
+
+  .back:hover {
+    background-color: #55a0d6;
+    color: #fff;
+    text-decoration: none;
+  
+  }

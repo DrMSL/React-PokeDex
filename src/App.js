@@ -7,7 +7,7 @@ import Dashboard from './components/layout/Dashboard';
 import Pokemon from './components/pokemon/Pokemon';
 import PokeSearch from './components/pokemon/PokeSearch';
 import Teams from './components/Teams';
-import Test from './components/Test';
+import TeamPage from './components/TeamPage';
 import backgroundImage from './pattern2.png'
 
 
@@ -23,12 +23,17 @@ function App() {
         <Switch>
           <Route exact path="/" component={Dashboard} />
           <Route exact path="/pokemon/:pokemonIndex" component={Pokemon} />
-         
         </Switch>
       </div>
+
       <Route  path="/pokesearch" component={PokeSearch} />
-      <Route  path="/teams" component={Teams} />
-      <Route  path="/test" component={Test} />
+     
+     <div className="container">
+     <Switch>
+        <Route exact path="/teams" component={Teams} />
+        <Route exact path="/teams/:id" component={TeamPage} />
+        </Switch>
+     </div>
       </header>
     </div>
     </Router>

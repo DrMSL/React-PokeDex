@@ -10,7 +10,7 @@ export default class PokeSearch extends Component {
 
         this.state = {
             search: '',
-            url: "https://pokeapi.co/api/v2/pokemon/?limit=151",
+            url: "https://pokeapi.co/api/v2/pokemon/?limit=251",
             pokemon: [],
             filteredPokemons: {}
             
@@ -68,7 +68,6 @@ export default class PokeSearch extends Component {
                     value={this.state.search}
                     id="search-input"
                     placeholder="search..."
-                    //onChange={this.filterList}
                     onChange= {this.updateSearch.bind(this)}
                     />
                     <i className="fas fa-search searchicon"  style={{position: 'absolute'}}></i>

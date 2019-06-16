@@ -72,7 +72,7 @@ componentDidMount() {
             <div className="col-md-3 col-sm-6 mb-5">
                 <StyledLink to={`pokemon/${this.state.pokemonIndex}`}>
                <Card className="card">
-                   
+                  
                     <h5 className="card-header">{this.state.pokemonIndex} </h5>
                     {this.state.imageLoading ? (
                         <img src={spinner} style={{width:'5em',  height: '5em'}} className="card-img-top rounded mx-auto d-block mt-2" alt=""></img>

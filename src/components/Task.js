@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 
 
 export class Task extends Component {
@@ -75,9 +76,10 @@ handleEditingChange (event) {
                 <p>
                
                 <span style= {this.getStyle()}>
-                {/* { title } */}
+               
                 { this.state.changedText }
                 { ' ' } 
+                <Link to={`teams/${id}`}> <i class="fas fa-arrow-right"></i></Link>
                 </span>
                 { ' ' } 
                 <button onClick={this.props.delTodo.bind(this, id)} style={btnStyle}>x</button>
