@@ -6,9 +6,9 @@ import axios from 'axios';
 export default class PokemonList extends Component {
 
     state= {
-        // the first link is the good one - but for dev is too many requests
-        // url: "https://pokeapi.co/api/v2/pokemon/?limit=151",
-        url: "https://pokeapi.co/api/v2/pokemon/?limit=51",
+        // the first link is the good one - but for dev is too many requests - use smaller limit
+        url: "https://pokeapi.co/api/v2/pokemon/?limit=151",
+        // url: "https://pokeapi.co/api/v2/pokemon/?limit=51",
         pokemon: null
     };
 
